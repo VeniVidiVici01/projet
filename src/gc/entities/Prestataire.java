@@ -21,6 +21,10 @@ public class Prestataire {
    private double tel ;
    private String specialite ;
 
+    public void setId_prestataire(int id_prestataire) {
+        this.id_prestataire = id_prestataire;
+    }
+
     public Prestataire(int id_prestataire, String nom, String prenom, double cin, String mail, String pwd, String adresse, double tel, String specialite) {
         this.id_prestataire = id_prestataire;
         this.nom = nom;
