@@ -113,8 +113,7 @@ public class OffreDAO {
 
         String requete = "select * from offre";
         try {
-           Statement statement = MyConnection.getInstance()
-                   .createStatement();
+           Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);
 
             while(resultat.next()){
