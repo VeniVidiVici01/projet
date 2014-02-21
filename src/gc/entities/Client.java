@@ -11,7 +11,7 @@ package gc.entities;
  * @author mohamed
  */
 public class Client {
-    private int id_admin;
+    private int id_client;
     private String nom;
     private String prenom;
     private double cin;
@@ -19,6 +19,10 @@ public class Client {
     private String pwd;
     private String adresse;
     private double tel;
+
+    public Client(Object object, String _, String _0, Object object0, String _1, String _2, String _3, Object object1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public String getAdresse() {
         return adresse;
@@ -36,8 +40,8 @@ public class Client {
         this.cin = cin;
     }
 
-    public int getId_admin() {
-        return id_admin;
+    public int getId_client() {
+        return id_client;
     }
 
     public String getMail() {
@@ -82,7 +86,19 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" + "id_admin=" + id_admin + "nom=" + nom + "prenom=" + prenom + "cin=" + cin + "mail=" + mail + "pwd=" + pwd + "adresse=" + adresse + "tel=" + tel + '}';
+        return "Client{" + "id_client=" + id_client + "nom=" + nom + "prenom=" + prenom + "cin=" + cin + "mail=" + mail + "pwd=" + pwd + "adresse=" + adresse + "tel=" + tel + '}';
+    }
+
+    public void setId_client(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setclient(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setadresse(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
