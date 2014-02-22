@@ -22,10 +22,12 @@ import java.util.List;
 public class ReclamationDAO {
    public void insertReclamation(Reclamation r){
 
-        String requete = "insert into reclamation (id_rec) values (?)";
+        String requete = "insert into reclamation (id_rec,id_user,message,type) values (default,?,?,?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setInt(1, r.getId_rec());
+            ps.setInt(1, r.getId_user());
+            ps.setString(2, r.getMessage());
+            ps.setString(3, r.getType());
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
         } catch (SQLException ex) {
@@ -36,11 +38,13 @@ public class ReclamationDAO {
 
 
     public void updateReclamation(Reclamation r){
-        String requete = "update reclamation set id_rec=? where id_rec=?";
+        String requete = "update reclamation set id_user=?,message=?,type=? where id_rec=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
            // ps.setString(1, .getAdresse_depot());
-            ps.setInt(1, r.getId_rec());
+            ps.setInt(1, r.getId_user());
+            ps.setString(2, r.getMessage());
+            ps.setString(3, r.getType());
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
@@ -64,7 +68,7 @@ public class ReclamationDAO {
 
 
     public Reclamation findReclamation(int id){
-        Reclamation reclamation = new Reclamation(id, id, null, null);
+        Reclamation reclamation = new Reclamation(0, 0, "", "");
      String requete = "select * from reclamation where id_rec=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
@@ -73,6 +77,9 @@ public class ReclamationDAO {
             while (resultat.next())
             {
                reclamation.setId_rec(resultat.getInt(1));
+               reclamation.setId_user(resultat.getInt(2));
+               reclamation.setMessage(resultat.getString(3));
+               reclamation.setType(resultat.getString(4));
                
             }
             return reclamation;
@@ -92,13 +99,15 @@ public class ReclamationDAO {
 
         String requete = "select * from reclamation";
         try {
-           Statement statement = MyConnection.getInstance()
-                   .createStatement();
+           Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);
 
             while(resultat.next()){
               Reclamation reclamation =new  Reclamation(0,0, "", "");
                 reclamation.setId_rec(resultat.getInt(1));
+                reclamation.setId_user(resultat.getInt(2));
+                reclamation.setMessage(resultat.getString(3));
+                reclamation.setType(resultat.getString(4));
                 
 
                 listereclamation.add(reclamation);
