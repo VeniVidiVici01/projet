@@ -119,6 +119,14 @@ public class Prestataire {
         return "Prestataire{" + "id_prestataire=" + id_prestataire + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin + ", mail=" + mail + ", pwd=" + pwd + ", adresse=" + adresse + ", tel=" + tel + ", specialite=" + specialite + ", etat=" + etat + '}';
     }
 
+    public String etat() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getetat() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
   
     
     

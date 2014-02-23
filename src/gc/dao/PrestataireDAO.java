@@ -34,7 +34,7 @@ public class PrestataireDAO {
               ps.setString(6, p.getAdresse());
                ps.setDouble(7, p.getTel());
                 ps.setString(8, p.getSpecialite());
-                 ps.setString(9, p.etat());
+                 ps.setString(9, p.getetat());
                 
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
@@ -155,6 +155,7 @@ public class PrestataireDAO {
            Statement statement = MyConnection.getInstance()
                    .createStatement();
             ResultSet resultat = statement.executeQuery(requete);
+           
 
             while(resultat.next()){
                 Prestataire p = new Prestataire(0, "","",0,"", "","", 0, "","");

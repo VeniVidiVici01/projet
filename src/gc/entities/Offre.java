@@ -19,6 +19,7 @@ public class Offre {
     private String type;
     private String description;
     private int id_prestataire;
+    
 
     public Offre(int id_offre, String nom, String lieu, double prix, String date, String type, String description, int id_prestataire) {
         this.id_offre = id_offre;
