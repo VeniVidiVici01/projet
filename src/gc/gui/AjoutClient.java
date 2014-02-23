@@ -4,6 +4,10 @@
  */
 package gc.gui;
 
+import gc.dao.ClientDAO;
+import gc.entities.Client;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author STETCHI
@@ -183,7 +187,17 @@ public class AjoutClient extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextnomActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+      ClientDAO cdao =new ClientDAO();
+      Client cli = new Client(0,"","",0,"","","",0);
+      cli.setNom(jTextnom.getText());
+      cli.setPrenom(jTextprenom.getText());
+      cli.setCin(Double.parseDouble(jTextcin.getText()));
+      cli.setMail(jTextmail.getText());
+      cli.setPwd(jTextpassworld.getText());
+      cli.setAdresse(jTextadresse.getText());
+      cli.setTel(Double.parseDouble(jTexttel.getText()));
+      cdao.insertClient(cli);
+      JOptionPane.showMessageDialog(this, "ajout effectue");        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextprenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextprenomActionPerformed

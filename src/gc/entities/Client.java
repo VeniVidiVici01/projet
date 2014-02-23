@@ -20,9 +20,18 @@ public class Client {
     private String adresse;
     private double tel;
 
-    public Client(Object object, String _, String _0, Object object0, String _1, String _2, String _3, Object object1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Client(int id_client, String nom, String prenom, double cin, String mail, String pwd, String adresse, double tel) {
+        this.id_client = id_client;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.cin = cin;
+        this.mail = mail;
+        this.pwd = pwd;
+        this.adresse = adresse;
+        this.tel = tel;
     }
+
+   
 
     public String getAdresse() {
         return adresse;
@@ -89,17 +98,6 @@ public class Client {
         return "Client{" + "id_client=" + id_client + "nom=" + nom + "prenom=" + prenom + "cin=" + cin + "mail=" + mail + "pwd=" + pwd + "adresse=" + adresse + "tel=" + tel + '}';
     }
 
-    public void setId_client(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setclient(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setadresse(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
+   
+  
 }
