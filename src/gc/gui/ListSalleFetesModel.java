@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  * @author NESSIM
  */
 public class ListSalleFetesModel extends AbstractTableModel{
-     String[] headers={"Nom","Date","Liex","Prix"};
+     String[] headers={"Nom","Date","Lieux","Prix"};
      List<Offre> ListeOffre=new ArrayList<>();
     public ListSalleFetesModel()
     {
