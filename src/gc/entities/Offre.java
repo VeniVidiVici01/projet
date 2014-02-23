@@ -12,6 +12,7 @@ package gc.entities;
  */
 public class Offre {
     private int id_offre ;
+    private String nom;
     private String lieu ;
     private double prix ;
     private String date ;
@@ -19,14 +20,23 @@ public class Offre {
     private String description;
     private int id_prestataire;
 
-    public Offre(int id_offre, String lieu, double prix, String date, String type, String description, int id_prestataire) {
+    public Offre(int id_offre, String nom, String lieu, double prix, String date, String type, String description, int id_prestataire) {
         this.id_offre = id_offre;
+        this.nom=nom;
         this.lieu = lieu;
         this.prix = prix;
         this.date = date;
         this.type=type;
         this.description=description;
         this.id_prestataire=id_prestataire;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public int getId_offre() {
@@ -96,8 +106,10 @@ public class Offre {
 
     @Override
     public String toString() {
-        return "Offre{" + "id_offre=" + id_offre + ", lieu=" + lieu + ", prix=" + prix + ", date=" + date + ", type=" + type + ", description=" + description + ", id_prestataire=" + id_prestataire + '}';
+        return "Offre{" + "id_offre=" + id_offre + ", nom=" + nom + ", lieu=" + lieu + ", prix=" + prix + ", date=" + date + ", type=" + type + ", description=" + description + ", id_prestataire=" + id_prestataire + '}';
     }
+
+  
     
  
     
