@@ -15,13 +15,25 @@ public class Commentaire {
     private int id_offre ;
     private int id_user ;
     private String type ;
+    private String commentaire;
 
-    public Commentaire(int id_comm, int id_offre, int id_user, String type) {
+    public Commentaire(int id_comm, int id_offre, int id_user, String type, String commentaire) {
         this.id_comm = id_comm;
         this.id_offre = id_offre;
         this.id_user = id_user;
         this.type = type;
+        this.commentaire = commentaire;
     }
+
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
+    }
+
+    
 
     public int getId_comm() {
         return id_comm;
