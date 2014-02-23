@@ -102,8 +102,8 @@ public class ClientDAO {
         }
     }
 
-  /*  public Client findClientAdresse(String adresse){
-      Client c = new Client (null," "," ",null," "," "," ",null);
+    public Client findClientAdresse(String adresse){
+      Client c = new Client (0,"","",0,"","","",0);
      String requete = "select * from client where adresse= ?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
@@ -137,7 +137,7 @@ public class ClientDAO {
             ResultSet resultat = statement.executeQuery(requete);
 
             while(resultat.next()){
-                Client c = new Client (null," "," ",null," "," "," ",null);
+                Client c = new Client (0,"","",0,"","","",0);
                 c.setId_client(resultat.getInt(1));
                 c.setadresse(resultat.getString(2));
 
@@ -151,5 +151,5 @@ public class ClientDAO {
         }
     }
     
-    */
+    
 }
