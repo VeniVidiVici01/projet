@@ -20,12 +20,12 @@ public class Prestataire {
    private String adresse ;
    private double tel ;
    private String specialite ;
-
+  private String etat ;
     public void setId_prestataire(int id_prestataire) {
         this.id_prestataire = id_prestataire;
     }
 
-    public Prestataire(int id_prestataire, String nom, String prenom, double cin, String mail, String pwd, String adresse, double tel, String specialite) {
+    public Prestataire(int id_prestataire, String nom, String prenom, double cin, String mail, String pwd, String adresse, double tel, String specialite,String etat) {
         this.id_prestataire = id_prestataire;
         this.nom = nom;
         this.prenom = prenom;
@@ -35,6 +35,7 @@ public class Prestataire {
         this.adresse = adresse;
         this.tel = tel;
         this.specialite = specialite;
+        this.etat = etat ;
     }
 
     public void setNom(String nom) {
@@ -77,6 +78,14 @@ public class Prestataire {
         return nom;
     }
 
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
     public String getPrenom() {
         return prenom;
     }
@@ -107,7 +116,10 @@ public class Prestataire {
 
     @Override
     public String toString() {
-        return "Prestataire{" + "id_prestataire=" + id_prestataire + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin + ", mail=" + mail + ", pwd=" + pwd + ", adresse=" + adresse + ", tel=" + tel + ", specialite=" + specialite + '}';
+        return "Prestataire{" + "id_prestataire=" + id_prestataire + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin + ", mail=" + mail + ", pwd=" + pwd + ", adresse=" + adresse + ", tel=" + tel + ", specialite=" + specialite + ", etat=" + etat + '}';
     }
+
+  
+    
     
 }
