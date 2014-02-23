@@ -17,7 +17,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ListSalleFetesModel extends AbstractTableModel{
      String[] headers={"Nom","Date","Liex","Prix"};
-     List<Offre> ListeOffre=new ArrayList<Offre>();
+     List<Offre> ListeOffre=new ArrayList<>();
     public ListSalleFetesModel()
     {
        OffreDAO offredao=new OffreDAO();
@@ -52,7 +52,9 @@ public class ListSalleFetesModel extends AbstractTableModel{
     }
     
     
-    
-    
+     @Override
+        public String getColumnName(int column) {
+        return headers[column];
+    }
     
 }
