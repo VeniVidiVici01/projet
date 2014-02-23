@@ -22,7 +22,7 @@ import java.util.List;
 public class ReclamationDAO {
    public void insertReclamation(Reclamation r){
 
-        String requete = "insert into reclamation (id_rec,id_user,message,type) values (default,?,?,?)";
+        String requete = "insert into reclamation (id_reclamation,id_user,message,type) values (default,?,?,?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1, r.getId_user());
