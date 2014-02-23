@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  *
  * @author mohamed
@@ -23,12 +24,14 @@ public class CommentaireDAO {
     
      public void insertCommentaire(Commentaire commentaire){
 
-        String requete = "insert into commentaire (id_comm,id_user,type,id_offre) values (default,?,?,?)";
+        String requete = "insert into commentaire (id_comm,id_user,type,id_offre,commentaire) values (default,?,?,?,?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1, commentaire.getId_user());
             ps.setString(2, commentaire.getType());
             ps.setInt(3, commentaire.getId_offre());
+            ps.setString(4, commentaire.getCommentaire());
+         
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
         } catch (SQLException ex) {
@@ -38,13 +41,14 @@ public class CommentaireDAO {
     }
 
 
-    public void updateCommentaire(Commentaire commentaire){
-        String requete = "update commentaire set id_user=?, id_offres=? , type=? where id_comm=?";
+    public void updateCommentaire(Commentaire commentaire,int id){
+        String requete = "update commentaire set id_user=?, id_offre=? , type=? where id_comm=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);          
             ps.setInt(1, commentaire.getId_user());
             ps.setInt(2, commentaire.getId_offre());
             ps.setString(3, commentaire.getType());
+            ps.setInt(4, id);
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
@@ -68,7 +72,7 @@ public class CommentaireDAO {
 
 
     public Commentaire findCommentaire(int id){
-        Commentaire commentaire = new Commentaire(0,0,0,"");
+        Commentaire commentaire = new Commentaire(0,0,0,"","");
      String requete = "select * from commentaire where id_comm=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
@@ -77,8 +81,8 @@ public class CommentaireDAO {
             while (resultat.next())
             {
                commentaire.setId_comm(resultat.getInt(1));
-               commentaire.setId_offre(resultat.getInt(2));
-               commentaire.setId_user(resultat.getInt(3));
+               commentaire.setId_offre(resultat.getInt(3));
+               commentaire.setId_user(resultat.getInt(2));
                commentaire.setType(resultat.getString(4));
                
             }
@@ -104,10 +108,10 @@ public class CommentaireDAO {
             ResultSet resultat = statement.executeQuery(requete);
 
             while(resultat.next()){
-              Commentaire commentaire = new Commentaire(0,0,0,"");
+              Commentaire commentaire = new Commentaire(0,0,0,"","");
                 commentaire.setId_comm(resultat.getInt(1));
-               commentaire.setId_offre(resultat.getInt(2));
-               commentaire.setId_user(resultat.getInt(3));
+               commentaire.setId_offre(resultat.getInt(3));
+               commentaire.setId_user(resultat.getInt(2));
                commentaire.setType(resultat.getString(4));
                 
 

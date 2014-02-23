@@ -22,7 +22,7 @@ import java.util.List;
 public class PrestataireDAO {
      public void insertPrestataire(Prestataire p){
 
-        String requete = "insert into prestataire (id_prestataire,nom,prenom,cin,mail,pwd,adresse,tel,specialite,etat) values (default,?,?,?,?,?,?,?,?,?)";
+        String requete = "insert into prestataire (id_prestataire,nom,prenom,cin,mail,pwd,adresse,tel,specialite) values (default,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
            
@@ -34,7 +34,7 @@ public class PrestataireDAO {
               ps.setString(6, p.getAdresse());
                ps.setDouble(7, p.getTel());
                 ps.setString(8, p.getSpecialite());
-                 ps.setString(9, p.getetat());
+                 
                 
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
