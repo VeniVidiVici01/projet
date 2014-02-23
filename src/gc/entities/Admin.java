@@ -15,6 +15,10 @@ public class Admin {
     private String mail;
     private String pwd;
 
+    public Admin(String string, String string0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getId_admin() {
         return id_admin;
     }
@@ -39,6 +43,14 @@ public class Admin {
     @Override
     public String toString() {
         return "Admin{" + "id_admin=" + id_admin + ", mail=" + mail + ", pwd=" + pwd + '}';
+    }
+
+    public void setId_admin(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setNom(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
