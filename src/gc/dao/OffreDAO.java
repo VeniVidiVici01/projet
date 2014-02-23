@@ -21,10 +21,16 @@ import java.util.List;
 public class OffreDAO {
     public void insertOffre(Offre o){
 
-        String requete = "insert into offre(id_offre) values (?)";
+        String requete = "insert into offre(id_offre,lieu,prix,date,type,description,id_prestataire) values (default,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setInt(1, o.getId_offre());
+            
+            ps.setString(1, o.getLieu());
+            ps.setDouble(2, o.getPrix());
+            ps.setString(3, o.getDate());
+            ps.setString(5, o.getType());
+            ps.setString(5, o.getDescription());
+            ps.setInt(6, o.getId_prestataire());
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
         } catch (SQLException ex) {
@@ -35,11 +41,16 @@ public class OffreDAO {
 
 
     public void updateOffre(Offre o ){
-        String requete = "update offre set id_offre=? where id_offre=?";
+        String requete = "update offre set lieu=?,prix=?,date=?,type=?,description=?,id_prestataire=? where id_offre=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setInt(1, o.getId_offre());
-            ps.setInt(2, o.getId_offre());
+             ps.setString(1, o.getLieu());
+            ps.setDouble(2, o.getPrix());
+            ps.setString(3, o.getDate());
+            ps.setString(4, o.getType());
+            ps.setString(5, o.getDescription());
+            ps.setInt(6, o.getId_prestataire());
+            ps.setInt(7,o.getId_offre());
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
@@ -63,7 +74,8 @@ public class OffreDAO {
 
 
     public Offre findOffreById(int id_offre){
-    Offre o  = new Offre(0, "",0,"");
+    Offre o;
+        o = new Offre (0, "",0 , "", "", "",0);
      String requete = "select * from offre where id_offre=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
@@ -72,6 +84,12 @@ public class OffreDAO {
             while (resultat.next())
             {
                o.setId_offre(resultat.getInt(1));
+                o.setLieu(resultat.getString(2));
+                 o.setPrix(resultat.getDouble(3));
+                  o.setDate(resultat.getString(4));
+                   o.setType(resultat.getString(5));
+                   o.setDescription(resultat.getString(6));
+                  o.setId_prestataire(resultat.getInt(7));  
              
             }
             return o;
@@ -84,7 +102,7 @@ public class OffreDAO {
     }
 
     public Offre findOffreLieu(String lieu){
-     Offre o  = new Offre(0, "",0,"");
+     Offre o  = new Offre(0, "", 0, "", "", "", 0);
      String requete = "select * from offre where lieu= ?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
@@ -93,9 +111,13 @@ public class OffreDAO {
             while (resultat.next())
             {
                o.setId_offre(resultat.getInt(1));
-                System.out.println("testttttttt"+o.getId_offre());
-               o.setoffre(resultat.getString(2));
-                System.out.println(resultat.getString(2));
+                o.setLieu(resultat.getString(2));
+                 o.setPrix(resultat.getInt(3));
+                  o.setDate(resultat.getString(4));
+                   o.setType(resultat.getString(5));
+                    o.setDescription(resultat.getString(6));
+                     o.setId_prestataire(resultat.getInt(7));
+                
             }
             return o;
 
@@ -117,9 +139,14 @@ public class OffreDAO {
             ResultSet resultat = statement.executeQuery(requete);
 
             while(resultat.next()){
-                Offre o = new Offre(0, "",0,"");
+                Offre o  = new Offre(0, "", 0, "", "", "", 0);
                 o.setId_offre(resultat.getInt(1));
-                o.setlieu(resultat.getString(2));
+                o.setLieu(resultat.getString(2));
+                 o.setPrix(resultat.getInt(3));
+                  o.setDate(resultat.getString(4));
+                   o.setType(resultat.getString(5));
+                    o.setDescription(resultat.getString(6));
+                     o.setId_prestataire(resultat.getInt(7));
 
                 listeoffre.add(o);
             }
