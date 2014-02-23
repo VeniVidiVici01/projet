@@ -22,10 +22,18 @@ import java.util.List;
 public class PrestataireDAO {
      public void insertPrestataire(Prestataire p){
 
-        String requete = "insert into prestataire (id_prestataire) values (?)";
+        String requete = "insert into prestataire (id_prestataire,nom,prenom,cin,mail,pwd,adresse,tel,specialite) values (default,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setInt(1, p.getId_prestataire());
+           
+            ps.setString(1, p.getNom());
+              ps.setString(2, p.getPrenom());
+               ps.setDouble(3, p.getCin());
+               ps.setString(4, p.getMail());
+                ps.setString(5, p.getPwd());
+              ps.setString(6, p.getAdresse());
+               ps.setDouble(7, p.getTel());
+                ps.setString(8, p.getSpecialite());
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
         } catch (SQLException ex) {
@@ -36,10 +44,19 @@ public class PrestataireDAO {
 
 
     public void updatePrestataire(Prestataire p){
-        String requete = "update prestataire  set id_prestataire=? where id_prestataire=?";
+        String requete;
+         requete = "update prestataire  set nom =?,prenom=?,cin=?,mail=?,pwd=?,adresse=?,tel=?,specialite=? where id_prestataire=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setInt(1, p.getId_prestataire());
+            ps.setInt(8, p.getId_prestataire()); 
+             ps.setString(1, p.getNom());
+              ps.setString(2, p.getPrenom());
+               ps.setDouble(3, p.getCin());
+                ps.setString(4, p.getPwd());
+              ps.setString(5, p.getAdresse());
+               ps.setDouble(6, p.getTel());
+                ps.setString(7, p.getSpecialite());
+            
             //ps.setInt(2, p.getId_prestataire());
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
@@ -73,6 +90,15 @@ public class PrestataireDAO {
             while (resultat.next())
             {
                p.setId_prestataire(resultat.getInt(1));
+               p.setNom(resultat.getString(2));
+              p.setPrenom(resultat.getString(3));
+               p.setCin(resultat.getDouble(4));
+                p.setMail(resultat.getString(5));
+              p.setPwd(resultat.getString(6));
+               p.setAdresse(resultat.getString(7));
+                p.setTel(resultat.getDouble(8));
+                 p.setSpecialite(resultat.getString(9));
+                
              
             }
             return p;
@@ -94,9 +120,14 @@ public class PrestataireDAO {
             while (resultat.next())
             {
                p.setId_prestataire(resultat.getInt(1));
-                System.out.println("testttttttt"+p.getId_prestataire());
-               p.setAdresse(resultat.getString(2));
-                System.out.println(resultat.getString(2));
+               p.setNom(resultat.getString(2));
+              p.setPrenom(resultat.getString(3));
+               p.setCin(resultat.getDouble(4));
+                p.setMail(resultat.getString(5));
+              p.setPwd(resultat.getString(6));
+               p.setAdresse(resultat.getString(7));
+                p.setTel(resultat.getDouble(8));
+                 p.setSpecialite(resultat.getString(9));
             }
             return p;
 
@@ -110,7 +141,7 @@ public class PrestataireDAO {
     public List<Prestataire> DisplayAllPrestataire (){
 
 
-        List<Prestataire> listeprestataire = new ArrayList<Prestataire>();
+        List<Prestataire> listeprestataire = new ArrayList<>();
 
         String requete = "select * from prestataire";
         try {
@@ -120,8 +151,15 @@ public class PrestataireDAO {
 
             while(resultat.next()){
                 Prestataire p = new Prestataire(0, "","",0,"", "","", 0, "");
-                p.setId_prestataire(resultat.getInt(1));
-                p.setAdresse(resultat.getString(2));
+                 p.setId_prestataire(resultat.getInt(1));
+               p.setNom(resultat.getString(2));
+              p.setPrenom(resultat.getString(3));
+               p.setCin(resultat.getDouble(4));
+                p.setMail(resultat.getString(5));
+              p.setPwd(resultat.getString(6));
+               p.setAdresse(resultat.getString(7));
+                p.setTel(resultat.getDouble(8));
+                 p.setSpecialite(resultat.getString(9));
 
                 listeprestataire.add(p);
             }
