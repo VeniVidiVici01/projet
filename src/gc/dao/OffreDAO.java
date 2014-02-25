@@ -136,21 +136,23 @@ public class OffreDAO {
 
         List<Offre> listeoffre = new ArrayList<>();
 
-        String requete = "select * from offre";
+        String requete = "SELECT  `nom` ,  `lieu` ,  `prix` ,  `date` \n" +
+"FROM  `offre` ";
         try {
            Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);
 
             while(resultat.next()){
-                Offre o  = new Offre(0, "","", 0, "", "", "", 0);
-                o.setId_offre(resultat.getInt(1));
-                o.setNom(resultat.getString(2));
-                o.setLieu(resultat.getString(3));
-                 o.setPrix(resultat.getInt(4));
-                  o.setDate(resultat.getString(5));
-                   o.setType(resultat.getString(6));
-                    o.setDescription(resultat.getString(7));
-                     o.setId_prestataire(resultat.getInt(8));
+                Offre o  = new Offre();
+               
+                o.setNom(resultat.getString(1));
+                o.setLieu(resultat.getString(2));
+                o.setPrix(resultat.getDouble(3));
+                 o.setDate(resultat.getString(4));
+                 // o.setDate(resultat.getString(5));
+                  // o.setType(resultat.getString(6));
+                  //  o.setDescription(resultat.getString(7));
+                   //  o.setId_prestataire(resultat.getInt(8));
 
                 listeoffre.add(o);
             }
