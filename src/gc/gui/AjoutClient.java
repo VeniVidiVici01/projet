@@ -6,6 +6,7 @@ package gc.gui;
 
 import gc.dao.ClientDAO;
 import gc.entities.Client;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +20,7 @@ public class AjoutClient extends javax.swing.JFrame {
      */
     public AjoutClient() {
         initComponents();
+       
     }
 
     /**

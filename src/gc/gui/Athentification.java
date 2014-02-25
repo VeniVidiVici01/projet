@@ -7,6 +7,7 @@ package gc.gui;
 import gc.dao.AdminDAO;
 import gc.entities.Admin;
 
+
 /**
  *
  * @author STETCHI
@@ -98,6 +99,10 @@ public class Athentification extends javax.swing.JFrame {
         admin = admindao.findAdminByMail(jmail.getText(),jpwd.getText());
         System.out.println(admin.getMail());
         System.out.println(admin.getPwd());
+        
+        AjoutClient ac = new AjoutClient();
+        this.setVisible(false);
+        ac.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
