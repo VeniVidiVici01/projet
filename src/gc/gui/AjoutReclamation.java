@@ -7,6 +7,7 @@
 package gc.gui;
 
 import gc.dao.ReclamationDAO;
+import gc.entities.Globale;
 import gc.entities.Reclamation;
 
 /**
@@ -20,6 +21,9 @@ public class AjoutReclamation extends javax.swing.JFrame {
      */
     public AjoutReclamation() {
         initComponents();
+        Globale gl = new Globale();
+        mail.setText(gl.getMail());
+        
     }
 
     /**
@@ -37,6 +41,8 @@ public class AjoutReclamation extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jMessage = new javax.swing.JTextArea();
         jText = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        mail = new javax.swing.JTextField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -57,31 +63,51 @@ public class AjoutReclamation extends javax.swing.JFrame {
 
         jText.setText("message:");
 
+        jLabel1.setText("Adresse :");
+
+        mail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mailActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 321, Short.MAX_VALUE)
                 .addComponent(jAjouter)
-                .addGap(25, 25, 25))
+                .addGap(260, 260, 260))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jText, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
-                .addGap(26, 26, 26))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jText, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(69, 69, 69)
+                        .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jText)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(93, 93, 93)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jText)
+                        .addGap(56, 56, 56)))
+                .addGap(18, 18, 18)
                 .addComponent(jAjouter)
-                .addContainerGap())
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -93,6 +119,11 @@ public class AjoutReclamation extends javax.swing.JFrame {
     R.setMessage(jMessage.getText());
     Reclamation.insertReclamation(R);        // TODO add your handling code here:
     }//GEN-LAST:event_jAjouterActionPerformed
+
+    private void mailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mailActionPerformed
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_mailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,10 +162,12 @@ public class AjoutReclamation extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAjouter;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextArea jMessage;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jText;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField mail;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,7 +6,10 @@
 
 package gc.gui;
 
+import gc.dao.ClientDAO;
 import gc.dao.ReclamationDAO;
+import gc.entities.Client;
+import gc.entities.Globale;
 import gc.entities.Reclamation;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +47,7 @@ JLabel l1;
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         supprimer = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        repondre = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         message = new javax.swing.JTextArea();
 
@@ -87,10 +90,10 @@ JLabel l1;
             }
         });
 
-        jButton2.setText("rependre");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        repondre.setText("rependre");
+        repondre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                repondreActionPerformed(evt);
             }
         });
 
@@ -110,7 +113,7 @@ JLabel l1;
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(repondre, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(supprimer)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,7 +133,7 @@ JLabel l1;
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
+                    .addComponent(repondre)
                     .addComponent(supprimer))
                 .addContainerGap())
         );
@@ -146,15 +149,24 @@ JLabel l1;
         message.setText("");
     }//GEN-LAST:event_supprimerActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void repondreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repondreActionPerformed
+        AjoutReclamation rec = new AjoutReclamation();
+        this.setVisible(false);
+        rec.setVisible(true);
+
    
-   
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_repondreActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+       ClientDAO cd = new ClientDAO();
+          Client cl = new Client(0,"","",0,"","","",0);
+          Globale gl = new Globale();
+         
+        cl =cd.findClientAdresse((String)jList1.getSelectedValue());
+         gl.setMail(cl.getMail());
         ReclamationDAO rd=new ReclamationDAO();
-        Reclamation rc=null;
-        rc=rd.findReclamation((int) jList1.getSelectedValue());
+        Reclamation rc= new Reclamation(0,0, "","");
+        rc = rd.findReclamationByUser(cl.getId_client());
         message.setText(rc.getMessage());
     }//GEN-LAST:event_jList1MouseClicked
 
@@ -196,21 +208,26 @@ JLabel l1;
     public void  load()
     {
          ReclamationDAO rd=new ReclamationDAO();
+         ClientDAO cd = new ClientDAO();
+          Client cl = new Client(0,"","",0,"","","",0);
         List<Reclamation> reclamation;
         reclamation = new  ArrayList<Reclamation>();
         reclamation=rd.DisplayAllReclamation();
         DefaultListModel model;
+        
         model = new DefaultListModel();
         jList1.setModel(model);
         model.clear();
+        model.addElement(cl.getNom());
         for(int i=0;i<reclamation.size();i++)
         {
-            model.add(i, reclamation.get(i).getId_rec());
+          cl=  cd.findClientById(reclamation.get(i).getId_user());
+model.add(i, cl.getNom());
         }
+                
     }
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList jList1;
@@ -219,6 +236,7 @@ JLabel l1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea message;
+    private javax.swing.JButton repondre;
     private javax.swing.JButton supprimer;
     // End of variables declaration//GEN-END:variables
 }
