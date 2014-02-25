@@ -19,9 +19,9 @@ import java.util.List;
  * @author BEN ARFA
  */
 public class OffreDAO {
-    public void insertOffre(Offre o){
+    public boolean insertOffre(Offre o){
 
-        String requete = "insert into offre(id_offre,nom,lieu,prix,date,type,description,id_prestataire) values (default,?,?,?,?,?,?,?)";
+      String requete = "insert into offre(id_offre,nom,lieu,prix,date,type,description,id_prestataire) values (default,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(2, o.getNom());
@@ -32,11 +32,14 @@ public class OffreDAO {
             ps.setString(7, o.getDescription());
             ps.setInt(8, o.getId_prestataire());
             ps.executeUpdate();
+            
             System.out.println("Ajout effectuée avec succès");
+            return  true ;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors de l'insertion "+ex.getMessage());
         }
+        return false;
     }
 
 
@@ -149,10 +152,10 @@ public class OffreDAO {
                 o.setLieu(resultat.getString(2));
                 o.setPrix(resultat.getDouble(3));
                  o.setDate(resultat.getString(4));
-                 // o.setDate(resultat.getString(5));
-                  // o.setType(resultat.getString(6));
-                  //  o.setDescription(resultat.getString(7));
-                   //  o.setId_prestataire(resultat.getInt(8));
+                 
+                  // o.setType(resultat.getString(5));
+                 //   o.setDescription(resultat.getString(6));
+                   //  o.setId_prestataire(resultat.getInt(7));
 
                 listeoffre.add(o);
             }

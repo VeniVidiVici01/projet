@@ -22,11 +22,7 @@ public class Prestataire {
    private String specialite ;
   private String etat ;
    
-  public void setId_prestataire(int id_prestataire) {
-   
-        this.id_prestataire = id_prestataire;
-    }
-
+ 
     public Prestataire(int id_prestataire, String nom, String prenom, double cin, String mail, String pwd, String adresse, double tel, String specialite,String etat) {
         this.id_prestataire = id_prestataire;
         this.nom = nom;
@@ -40,44 +36,76 @@ public class Prestataire {
         this.etat = etat ;
     }
 
+    public int getId_prestataire() {
+        return id_prestataire;
+    }
+
+    public void setId_prestataire(int id_prestataire) {
+        this.id_prestataire = id_prestataire;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
     }
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
 
+    public double getCin() {
+        return cin;
+    }
+
     public void setCin(double cin) {
         this.cin = cin;
+    }
+
+    public String getMail() {
+        return mail;
     }
 
     public void setMail(String mail) {
         this.mail = mail;
     }
 
+    public String getPwd() {
+        return pwd;
+    }
+
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public String getAdresse() {
+        return adresse;
     }
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
 
+    public double getTel() {
+        return tel;
+    }
+
     public void setTel(double tel) {
         this.tel = tel;
     }
 
+    public String getSpecialite() {
+        return specialite;
+    }
+
     public void setSpecialite(String specialite) {
         this.specialite = specialite;
-    }
-
-    public int getId_prestataire() {
-        return id_prestataire;
-    }
-
-    public String getNom() {
-        return nom;
     }
 
     public String getEtat() {
@@ -86,35 +114,6 @@ public class Prestataire {
 
     public void setEtat(String etat) {
         this.etat = etat;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-    
-
-    public double getCin() {
-        return cin;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public String getPwd() {
-        return pwd;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public double getTel() {
-        return tel;
-    }
-
-    public String getSpecialite() {
-        return specialite;
     }
 
     @Override
