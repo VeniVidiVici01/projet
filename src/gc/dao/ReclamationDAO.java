@@ -117,6 +117,30 @@ public class ReclamationDAO {
         }
     }
 
+     public Reclamation findReclamationById(int id){
+        Reclamation reclamation = new Reclamation(0, 0, "", "");
+     String requete = "select * from reclamation where id_reclamation=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setInt(1, id);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next())
+            {
+               reclamation.setId_rec(resultat.getInt(1));
+               reclamation.setId_user(resultat.getInt(2));
+               reclamation.setMessage(resultat.getString(3));
+               reclamation.setType(resultat.getString(4));
+               
+            }
+            return reclamation;
+
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche du depot "+ex.getMessage());
+            return null;
+        }
+    }
+
    
     public List<Reclamation> DisplayAllReclamation (){
 

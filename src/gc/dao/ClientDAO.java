@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 
 package gc.dao;
 
@@ -19,16 +19,17 @@ import java.util.List;
 
 
 /**
- *
- * @author BEN ARFA
- */
+*
+* @author BEN ARFA
+*/
 public class ClientDAO {
 
      public void insertClient(Client c){
 
         String requete = "insert into client(id_client,nom,prenom,cin,mail,pwd,adresse,tel) values (default,?,?,?,?,?,?,?)";
         try {
-            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            PreparedStatement ps;
+            ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, c.getNom());
             ps.setString(2, c.getPrenom());
             ps.setDouble(3, c.getCin());
@@ -82,7 +83,7 @@ public class ClientDAO {
 
 
     public Client findClientById(int id_client){
-    Client c = new Client (0,"","",0,""," ","",0);
+    Client c = new Client (0,"","",0,"","","",0);
      String requete = "select * from client where id_client=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
@@ -91,8 +92,7 @@ public class ClientDAO {
             while (resultat.next())
             {
                c.setId_client(resultat.getInt(1));
-                c.setNom(resultat.getString(2));
-             
+               c.setNom(resultat.getString(2));
             }
             return c;
 
@@ -103,26 +103,25 @@ public class ClientDAO {
         }
     }
 
-    public Client findClientAdresse(String adresse){
+    public Client findClientAdresse(String nom){
       Client c = new Client (0,"","",0,"","","",0);
      String requete = "select * from client where nom= ?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setString(1, adresse);
+            ps.setString(1, nom);
             ResultSet resultat = ps.executeQuery();
             while (resultat.next())
             {
                c.setId_client(resultat.getInt(1));
-                //System.out.println("testttttttt"+c.getId_client());
-               c.setNom(resultat.getString(2));
-               // System.out.println(resultat.getString(2));
-                c.setMail(resultat.getString(5));
+                System.out.println("testttttttt"+c.getId_client());
+                c.setMail(resultat.getString(2));
+                System.out.println(resultat.getString(2));
             }
             return c;
 
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors de la recherche du client  "+ex.getMessage());
+            System.out.println("erreur lors de la recherche du client "+ex.getMessage());
             return null;
         }
     }
@@ -148,7 +147,7 @@ public class ClientDAO {
             return listeclient;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement des client  "+ex.getMessage());
+            System.out.println("erreur lors du chargement des client "+ex.getMessage());
             return null;
         }
     }
