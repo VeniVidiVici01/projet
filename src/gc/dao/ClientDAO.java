@@ -7,6 +7,7 @@
 package gc.dao;
 
 import gc.entities.Client;
+import gc.entities.Prestataire;
 import gc.util.MyConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -130,6 +131,7 @@ public class ClientDAO {
     public List<Client> DisplayAllClient (){
 
 
+
         List<Client> listeclient = new ArrayList<>();
 
         String requete = "select * from client";
@@ -137,18 +139,27 @@ public class ClientDAO {
            Statement statement = MyConnection.getInstance()
                    .createStatement();
             ResultSet resultat = statement.executeQuery(requete);
+           
 
             while(resultat.next()){
-                Client c = new Client (0,"","",0,"","","",0,0);
-                c.setId_client(resultat.getInt(1));
-                c.setAdresse(resultat.getString(2));
+                Client p = new Client(0,"","",0,"","","",0,0);
+                 p.setId_client(resultat.getInt(1));
+               p.setNom(resultat.getString(2));
+              p.setPrenom(resultat.getString(3));
+               p.setCin(resultat.getDouble(4));
+                p.setMail(resultat.getString(5));
+              p.setPwd(resultat.getString(6));
+               p.setAdresse(resultat.getString(7));
+                p.setTel(resultat.getDouble(8));
+                 
+                  p.setEtat(resultat.getInt(10));
 
-                listeclient.add(c);
+                listeclient.add(p);
             }
             return listeclient;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement des client "+ex.getMessage());
+            System.out.println("erreur lors du chargement des prestataire "+ex.getMessage());
             return null;
         }
     }
