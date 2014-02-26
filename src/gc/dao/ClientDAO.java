@@ -92,7 +92,7 @@ public class ClientDAO {
             while (resultat.next())
             {
                c.setId_client(resultat.getInt(1));
-             
+               c.setNom(resultat.getString(2));
             }
             return c;
 
@@ -103,18 +103,18 @@ public class ClientDAO {
         }
     }
 
-    public Client findClientAdresse(String adresse){
+    public Client findClientAdresse(String nom){
       Client c = new Client (0,"","",0,"","","",0);
-     String requete = "select * from client where adresse= ?";
+     String requete = "select * from client where nom= ?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setString(1, adresse);
+            ps.setString(1, nom);
             ResultSet resultat = ps.executeQuery();
             while (resultat.next())
             {
                c.setId_client(resultat.getInt(1));
                 System.out.println("testttttttt"+c.getId_client());
-               c.setAdresse(resultat.getString(2));
+                c.setMail(resultat.getString(2));
                 System.out.println(resultat.getString(2));
             }
             return c;
