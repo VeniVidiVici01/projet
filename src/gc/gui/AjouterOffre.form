@@ -42,15 +42,19 @@
               </Group>
               <EmptySpace pref="39" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTxtNom" min="-2" pref="123" max="-2" attributes="0"/>
-                  <Component id="jTxtLieu" min="-2" pref="123" max="-2" attributes="0"/>
-                  <Component id="jTxtPrix" min="-2" pref="123" max="-2" attributes="0"/>
-                  <Component id="jTxtType" min="-2" pref="123" max="-2" attributes="0"/>
-                  <Component id="jTxtDate" min="-2" pref="123" max="-2" attributes="0"/>
-                  <Component id="jTxtDescription" alignment="0" min="-2" pref="181" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jTxtNom" min="-2" pref="123" max="-2" attributes="0"/>
+                          <Component id="jTxtLieu" min="-2" pref="123" max="-2" attributes="0"/>
+                          <Component id="jTxtPrix" min="-2" pref="123" max="-2" attributes="0"/>
+                          <Component id="jTxtDate" min="-2" pref="123" max="-2" attributes="0"/>
+                          <Component id="jTxtDescription" alignment="0" min="-2" pref="181" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="Ajouter" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="type" min="-2" pref="123" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="Ajouter" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
@@ -90,7 +94,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="jTxtType" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="type" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -187,11 +191,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtPrix">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTxtType">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtTypeActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JTextField" name="jTxtDate">
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtDescription">
@@ -205,6 +204,25 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AjouterActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="type">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="8">
+            <StringItem index="0" value="Salles des fetes"/>
+            <StringItem index="1" value="Gastronomie"/>
+            <StringItem index="2" value="location de voiture"/>
+            <StringItem index="3" value="liste des invitaions"/>
+            <StringItem index="4" value="salles de beautes"/>
+            <StringItem index="5" value="boutique de vetements"/>
+            <StringItem index="6" value="photographe"/>
+            <StringItem index="7" value="agence de voyage"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="typeActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -43,10 +43,10 @@ public class AjouterOffre extends javax.swing.JFrame {
         jTxtNom = new javax.swing.JTextField();
         jTxtLieu = new javax.swing.JTextField();
         jTxtPrix = new javax.swing.JTextField();
-        jTxtType = new javax.swing.JTextField();
         jTxtDate = new javax.swing.JTextField();
         jTxtDescription = new javax.swing.JTextField();
         Ajouter = new javax.swing.JButton();
+        type = new javax.swing.JComboBox();
 
         jLabel7.setText("Nom :");
 
@@ -82,12 +82,6 @@ public class AjouterOffre extends javax.swing.JFrame {
             }
         });
 
-        jTxtType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtTypeActionPerformed(evt);
-            }
-        });
-
         jTxtDescription.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtDescriptionActionPerformed(evt);
@@ -98,6 +92,13 @@ public class AjouterOffre extends javax.swing.JFrame {
         Ajouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AjouterActionPerformed(evt);
+            }
+        });
+
+        type.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Salles des fetes", "Gastronomie", "location de voiture", "liste des invitaions", "salles de beautes", "boutique de vetements", "photographe", "agence de voyage" }));
+        type.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeActionPerformed(evt);
             }
         });
 
@@ -116,14 +117,16 @@ public class AjouterOffre extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTxtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtType, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Ajouter)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTxtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtLieu, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Ajouter))
+                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -156,7 +159,7 @@ public class AjouterOffre extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -175,10 +178,6 @@ public class AjouterOffre extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtLieuActionPerformed
 
-    private void jTxtTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtTypeActionPerformed
-
     private void jTxtDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtDescriptionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtDescriptionActionPerformed
@@ -192,7 +191,7 @@ public class AjouterOffre extends javax.swing.JFrame {
       o.setLieu(jTxtLieu.getText());
       o.setPrix(Double.parseDouble(jTxtPrix.getText()));
       o.setDate(jTxtDate.getText());
-      o.setType(jTxtType.getText());
+      o.setType(type.getSelectedItem().toString());
       o.setDescription(jTxtDescription.getText());
       if (
       odao.insertOffre(o) ) 
@@ -201,6 +200,11 @@ public class AjouterOffre extends javax.swing.JFrame {
       JOptionPane.showMessageDialog(this, "ajout effectue"); 
       else JOptionPane.showMessageDialog(this, "ajout te7che fih");
     }//GEN-LAST:event_AjouterActionPerformed
+
+    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_typeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,6 +256,6 @@ public class AjouterOffre extends javax.swing.JFrame {
     private javax.swing.JTextField jTxtLieu;
     private javax.swing.JTextField jTxtNom;
     private javax.swing.JTextField jTxtPrix;
-    private javax.swing.JTextField jTxtType;
+    private javax.swing.JComboBox type;
     // End of variables declaration//GEN-END:variables
 }

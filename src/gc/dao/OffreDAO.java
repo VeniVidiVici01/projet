@@ -24,13 +24,14 @@ public class OffreDAO {
       String requete = "insert into offre(id_offre,nom,lieu,prix,date,type,description,id_prestataire) values (default,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setString(2, o.getNom());
-            ps.setString(3, o.getLieu());
-            ps.setDouble(4, o.getPrix());
-            ps.setString(5, o.getDate());
-            ps.setString(6, o.getType());
-            ps.setString(7, o.getDescription());
-            ps.setInt(8, o.getId_prestataire());
+          
+            ps.setString(1, o.getNom());
+            ps.setString(2, o.getLieu());
+            ps.setDouble(3, o.getPrix());
+            ps.setString(4, o.getDate());
+            ps.setString(5, o.getType());
+            ps.setString(6, o.getDescription());
+            ps.setInt(7, o.getId_prestataire());
             ps.executeUpdate();
             
             System.out.println("Ajout effectuée avec succès");
