@@ -22,7 +22,7 @@ import java.util.List;
 public class PrestataireDAO {
      public void insertPrestataire(Prestataire p){
 
-        String requete = "insert into prestataire (id_prestataire,nom,prenom,cin,mail,pwd,adresse,tel,specialite) values (default,?,?,?,?,?,?,?,?)";
+        String requete = "insert into prestataire(id_prestataire,nom,prenom,cin,mail,pwd,adresse,tel,specialite) values (default,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
            

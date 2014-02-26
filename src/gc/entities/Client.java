@@ -31,6 +31,10 @@ public class Client {
         this.tel = tel;
     }
 
+    public void setId_client(int id_client) {
+        this.id_client = id_client;
+    }
+
    
 
     public String getAdresse() {
@@ -98,18 +102,7 @@ public class Client {
         return "Client{" + "id_client=" + id_client + "nom=" + nom + "prenom=" + prenom + "cin=" + cin + "mail=" + mail + "pwd=" + pwd + "adresse=" + adresse + "tel=" + tel + '}';
     }
 
-    public void setId_client(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setadresse(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setclient(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   
    
   
 }
