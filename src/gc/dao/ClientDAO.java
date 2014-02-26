@@ -49,7 +49,7 @@ public class ClientDAO {
 
 
     public void updateClient(Client c ){
-        String requete = "update client set nom=?,prenom=?,cin=?,mail=?,pwd=?,adresset=?,tel=? where id_client=?";
+        String requete = "update client set nom=?,prenom=?,cin=?,mail=?,pwd=?,adresset=?,tel=?,etat=? where id_client=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, c.getNom());
@@ -59,7 +59,8 @@ public class ClientDAO {
             ps.setString(5, c.getPwd());
             ps.setString(6, c.getAdresse());
             ps.setDouble(7, c.getTel());
-            ps.setDouble(8, c.getId_client());
+            ps.setInt(8, c.getEtat());
+            
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
