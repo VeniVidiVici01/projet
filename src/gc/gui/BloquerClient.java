@@ -9,6 +9,7 @@ import gc.dao.ClientDAO;
 
 import gc.entities.Globale;
 import gc.entities.Client;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -49,11 +50,11 @@ public class BloquerClient extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Bloquer/debloquer Client");
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("liste des clients");
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("detail");
 
         jList2.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -64,14 +65,14 @@ public class BloquerClient extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jTextPane1);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("bloquer");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("debloquer");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -83,27 +84,25 @@ public class BloquerClient extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(26, 26, 26)))
-                .addGap(1, 1, 1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(40, 40, 40)
                 .addComponent(jButton2)
-                .addGap(29, 29, 29))
+                .addGap(42, 42, 42))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(272, 272, 272)
+                .addComponent(jLabel1)
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,13 +113,10 @@ public class BloquerClient extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -134,13 +130,13 @@ public class BloquerClient extends javax.swing.JFrame {
       private void jList2MousePressed(java.awt.event.MouseEvent evt) {                                    
         // TODO add your handling code here:
         ClientDAO p = new ClientDAO();
-        Client prest=p.findClientById(idp.get(jList2.getSelectedIndex()));
-        jTextPane1.setText("Nom : "+prest.getNom()+"\n"+
-                            "Prenom : "+prest.getPrenom()+"\n"
-                            +"cin : "+prest.getCin()+"\n"
-                            +"Mail : "+prest.getMail()+"\n"
-                            +"adresse : "+prest.getAdresse()+"\n"
-                            +"tell : "+prest.getTel()+"\n"
+        Client cli=p.findClientById(idp.get(jList2.getSelectedIndex()));
+        jTextPane1.setText("Nom : "+cli.getNom()+"\n"+
+                            "Prenom : "+cli.getPrenom()+"\n"
+                            +"cin : "+cli.getCin()+"\n"
+                            +"Mail : "+cli.getMail()+"\n"
+                            +"adresse : "+cli.getAdresse()+"\n"
+                            +"tell : "+cli.getTel()+"\n"
                             
                             );
                                                            
@@ -153,34 +149,34 @@ public class BloquerClient extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
          ClientDAO p = new ClientDAO();
-        Client cli=p.findClientById(WIDTH)idp.get(jList2.getSelectedIndex()));// TODO add your handling code here:
-        cli.setEtat("debloquer");
+         Client cli=p.findClientById(idp.get(jList2.getSelectedIndex()));
+        cli.setEtat(0);
         p.updateClient(cli);
-         jTextPane1.setText("Nom : "+prest.getNom()+"\n"+
-                            "Prenom : "+prest.getPrenom()+"\n"
-                            +"cin : "+prest.getCin()+"\n"
-                            +"Mail : "+prest.getMail()+"\n"
-                            +"adresse : "+prest.getAdresse()+"\n"
-                            +"tell : "+prest.getTel()+"\n"
-                            +"Specialite : "+prest.getSpecialite()+"\n"
-                            +"Etat : "+prest.getEtat()+"\n");
+         jTextPane1.setText("Nom : "+cli.getNom()+"\n"+
+                            "Prenom : "+cli.getPrenom()+"\n"
+                            +"cin : "+cli.getCin()+"\n"
+                            +"Mail : "+cli.getMail()+"\n"
+                            +"adresse : "+cli.getAdresse()+"\n"
+                            +"tell : "+cli.getTel()+"\n"
+                            
+                            +"Etat : "+cli.getEtat()+"\n");
                                                            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        PrestataireDAO p = new PrestataireDAO();
-        Prestataire prest=p.findPrestataireById(idp.get(jList2.getSelectedIndex()));// TODO add your handling code here:
-        prest.setEtat("bloquer");
-        p.updatePrestataire(prest);
-         jTextPane1.setText("Nom : "+prest.getNom()+"\n"+
-                            "Prenom : "+prest.getPrenom()+"\n"
-                            +"cin : "+prest.getCin()+"\n"
-                            +"Mail : "+prest.getMail()+"\n"
-                            +"adresse : "+prest.getAdresse()+"\n"
-                            +"tell : "+prest.getTel()+"\n"
-                            +"Specialite : "+prest.getSpecialite()+"\n"
-                            +"Etat : "+prest.getEtat()+"\n");
+        ClientDAO p = new ClientDAO();
+        Client cli=p.findClientById(idp.get(jList2.getSelectedIndex()));// TODO add your handling code here:
+        cli.setEtat(1);
+        p.updateClient(cli);
+         jTextPane1.setText("Nom : "+cli.getNom()+"\n"+
+                            "Prenom : "+cli.getPrenom()+"\n"
+                            +"cin : "+cli.getCin()+"\n"
+                            +"Mail : "+cli.getMail()+"\n"
+                            +"adresse : "+cli.getAdresse()+"\n"
+                            +"tell : "+cli.getTel()+"\n"
+                            
+                            +"Etat : "+cli.getEtat()+"\n");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -231,11 +227,11 @@ public class BloquerClient extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void load() {
-       PrestataireDAO pd = new PrestataireDAO();
-       Prestataire p ;
-        List<Prestataire> prestataires;
-        prestataires = new  ArrayList<Prestataire>();
-        prestataires=pd.DisplayAllPrestataire();
+       ClientDAO pd = new ClientDAO();
+       Client p ;
+        List<Client> clients;
+        clients = new  ArrayList<Client>();
+        clients=pd.DisplayAllClient();
         DefaultListModel model;
         
         model = new DefaultListModel();
@@ -243,11 +239,11 @@ public class BloquerClient extends javax.swing.JFrame {
         
         model.clear();
         //model.addElement(p.getId_prestataire());
-        for(int i=0;i<prestataires.size();i++)
+        for(int i=0;i<clients.size();i++)
         {
          
-            idp.add(prestataires.get(i).getId_prestataire());
-            model.add(i,prestataires.get(i).getNom());
+            idp.add(clients.get(i).getId_client());
+            model.add(i,clients.get(i).getNom());
         }
     }
 }

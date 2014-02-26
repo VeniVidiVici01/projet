@@ -192,7 +192,7 @@ Valider.setVisible(false);
         PrestataireDAO prestataire = new PrestataireDAO();
         ClientDAO client = new ClientDAO();
         Prestataire pres = new Prestataire(0,"","",0,"","","",0, "","");
-       Client cl = new Client(0, "", "", 0, "", "", "", 0);
+       Client cl = new Client(0, "", "", 0, "", "", "", 0,0);
          List<ResCommentaire> comm;
         comm = new  ArrayList<ResCommentaire>();
          comm = comment.DisplayAllCommentaire();

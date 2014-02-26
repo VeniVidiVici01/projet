@@ -26,7 +26,7 @@ public class ClientDAO {
 
      public void insertClient(Client c){
 
-        String requete = "insert into client(id_client,nom,prenom,cin,mail,pwd,adresse,tel) values (default,?,?,?,?,?,?,?)";
+        String requete = "insert into client(id_client,nom,prenom,cin,mail,pwd,adresse,tel,etat) values (default,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps;
             ps = MyConnection.getInstance().prepareStatement(requete);
@@ -83,7 +83,7 @@ public class ClientDAO {
 
 
     public Client findClientById(int id_client){
-    Client c = new Client (0,"","",0,"","","",0);
+    Client c = new Client (0,"","",0,"","","",0,0);
      String requete = "select * from client where id_client=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
@@ -104,7 +104,7 @@ public class ClientDAO {
     }
 
     public Client findClientAdresse(String nom){
-      Client c = new Client (0,"","",0,"","","",0);
+      Client c = new Client (0,"","",0,"","","",0,0);
      String requete = "select * from client where nom= ?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
@@ -138,7 +138,7 @@ public class ClientDAO {
             ResultSet resultat = statement.executeQuery(requete);
 
             while(resultat.next()){
-                Client c = new Client (0,"","",0,"","","",0);
+                Client c = new Client (0,"","",0,"","","",0,0);
                 c.setId_client(resultat.getInt(1));
                 c.setAdresse(resultat.getString(2));
 

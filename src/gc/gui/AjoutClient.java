@@ -190,7 +190,7 @@ public class AjoutClient extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       ClientDAO cdao =new ClientDAO();
-      Client cli = new Client(0,"","",0,"","","",0);
+      Client cli = new Client(0,"","",0,"","","",0,0);
       cli.setNom(jTextnom.getText());
       cli.setPrenom(jTextprenom.getText());
       cli.setCin(Double.parseDouble(jTextcin.getText()));
