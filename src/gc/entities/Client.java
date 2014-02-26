@@ -11,6 +11,8 @@ package gc.entities;
  * @author mohamed
  */
 public class Client {
+
+    
     private int id_client;
     private String nom;
     private String prenom;
@@ -31,10 +33,13 @@ public class Client {
         this.tel = tel;
     }
 
-    public void setId_client(int id_client) {
-        this.id_client = id_client;
+    /**
+     *
+     * @param id
+     */
+    public void setId_client(int id) {
+        this.id_client = id;
     }
-
    
 
     public String getAdresse() {
@@ -102,7 +107,6 @@ public class Client {
         return "Client{" + "id_client=" + id_client + "nom=" + nom + "prenom=" + prenom + "cin=" + cin + "mail=" + mail + "pwd=" + pwd + "adresse=" + adresse + "tel=" + tel + '}';
     }
 
-   
    
   
 }
