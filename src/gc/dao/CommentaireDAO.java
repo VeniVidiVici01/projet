@@ -6,7 +6,9 @@
 
 package gc.dao;
 
+import gc.entities.Client;
 import gc.entities.Commentaire;
+import gc.entities.ResCommentaire;
 import gc.util.MyConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -96,26 +98,32 @@ public class CommentaireDAO {
     }
 
    
-    public List<Commentaire> DisplayAllCommentaire (){
+    public List<ResCommentaire> DisplayAllCommentaire (){
 
 
-        List<Commentaire> listeCommentaire = new ArrayList<Commentaire>();
+        List<ResCommentaire> listeCommentaire = new ArrayList<ResCommentaire>();
 
-        String requete = "select * from commentaire";
+        String requete = "select C.nom, P.nom, M.comm"
+                + " from commentaire M,client C,prestataire P "
+                + " where ( M.type like 'prestataire' and M.id_user=P.id_prestataire ) "
+                + " or ( M.type like 'client' and M.id_user=C.id_client )";
+             
         try {
            Statement statement = MyConnection.getInstance()
                    .createStatement();
             ResultSet resultat = statement.executeQuery(requete);
 
             while(resultat.next()){
-              Commentaire commentaire = new Commentaire(0,0,0,"","");
-                commentaire.setId_comm(resultat.getInt(1));
-               commentaire.setId_offre(resultat.getInt(3));
-               commentaire.setId_user(resultat.getInt(2));
-               commentaire.setType(resultat.getString(4));
-                
+             ResCommentaire res = new ResCommentaire();
+             res.setNomc(resultat.getString(1));
+             res.setNomp(resultat.getString(2));
+             res.setComm(resultat.getString(3));
 
-                listeCommentaire.add(commentaire);
+              
+             
+
+                listeCommentaire.add(res);
+                 
             }
             return listeCommentaire;
         } catch (SQLException ex) {
