@@ -32,7 +32,7 @@ public class AdminDAO {
     }
    public Admin findAdminByMail(String mail, String pwd ){
     Admin a = new Admin("","");
-     String requete = "select * from Admin where mail=? and pwd=?";
+     String requete = "select * from admin where mail=? and pwd=? ";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, mail);
@@ -41,8 +41,9 @@ public class AdminDAO {
             ResultSet resultat = ps.executeQuery();
             while (resultat.next())
             {
-               a.setMail(resultat.getString(1));
-               a.setPwd(resultat.getString(2));
+               
+               a.setMail(resultat.getString(2));
+               a.setPwd(resultat.getString(3));
               
                 
              

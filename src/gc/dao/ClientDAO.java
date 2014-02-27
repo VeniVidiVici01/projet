@@ -60,7 +60,7 @@ public class ClientDAO {
             ps.setString(5, c.getPwd());
             ps.setString(6, c.getAdresse());
             ps.setDouble(7, c.getTel());
-            ps.setInt(8, c.getEtat());
+            ps.setString(8, c.getEtat());
             
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
@@ -85,7 +85,7 @@ public class ClientDAO {
 
 
     public Client findClientById(int id_client){
-    Client c = new Client (0,"","",0,"","","",0,0);
+    Client c = new Client (0,"","",0,"","","",0);
      String requete = "select * from client where id_client=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
@@ -106,11 +106,34 @@ public class ClientDAO {
     }
 
     public Client findClientAdresse(String nom){
-      Client c = new Client (0,"","",0,"","","",0,0);
+      Client c = new Client (0,"","",0,"","","",0);
      String requete = "select * from client where nom= ?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, nom);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next())
+            {
+               c.setId_client(resultat.getInt(1));
+                System.out.println("testttttttt"+c.getId_client());
+                c.setMail(resultat.getString(2));
+                System.out.println(resultat.getString(2));
+            }
+            return c;
+
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche du client "+ex.getMessage());
+            return null;
+        }
+    }
+     public Client findClientByMailPwd(String mail, String pwd){
+      Client c = new Client (0,"","",0,"","","",0);
+     String requete = "select * from client where mail=? and pwd=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setString(1, mail);
+            ps.setString(2, pwd);
             ResultSet resultat = ps.executeQuery();
             while (resultat.next())
             {
@@ -142,7 +165,7 @@ public class ClientDAO {
            
 
             while(resultat.next()){
-                Client p = new Client(0,"","",0,"","","",0,0);
+                Client p = new Client(0,"","",0,"","","",0);
                  p.setId_client(resultat.getInt(1));
                p.setNom(resultat.getString(2));
               p.setPrenom(resultat.getString(3));
@@ -151,15 +174,14 @@ public class ClientDAO {
               p.setPwd(resultat.getString(6));
                p.setAdresse(resultat.getString(7));
                 p.setTel(resultat.getDouble(8));
-                 
-                  p.setEtat(resultat.getInt(10));
+                p.setEtat(resultat.getString(9));
 
                 listeclient.add(p);
             }
             return listeclient;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement des prestataire "+ex.getMessage());
+            System.out.println("erreur lors du chargement des clients "+ex.getMessage());
             return null;
         }
     }

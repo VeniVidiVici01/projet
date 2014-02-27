@@ -5,7 +5,12 @@
 package gc.gui;
 
 import gc.dao.AdminDAO;
+import gc.dao.ClientDAO;
+import gc.dao.PrestataireDAO;
 import gc.entities.Admin;
+import gc.entities.Client;
+import gc.entities.Globale;
+import gc.entities.Prestataire;
 
 
 /**
@@ -19,6 +24,7 @@ public class Athentification extends javax.swing.JFrame {
      */
     public Athentification() {
         initComponents();
+        faux.setVisible(false);
     }
 
     /**
@@ -35,16 +41,13 @@ public class Athentification extends javax.swing.JFrame {
         jmail = new javax.swing.JTextField();
         jpwd = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        faux = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Mail :");
 
         jLabel2.setText("Password :");
-
-        jmail.setText("jTextField1");
-
-        jpwd.setText("jTextField2");
 
         jButton1.setText("se connecter");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -53,25 +56,31 @@ public class Athentification extends javax.swing.JFrame {
             }
         });
 
+        faux.setText("Mot de passe ou mail incorrect ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jpwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(62, 62, 62)
-                            .addComponent(jmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jButton1)))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jpwd, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jmail, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(faux)))
                 .addContainerGap(190, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,7 +94,9 @@ public class Athentification extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jpwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                .addGap(18, 18, 18)
+                .addComponent(faux)
+                .addGap(12, 12, 12)
                 .addComponent(jButton1)
                 .addContainerGap(106, Short.MAX_VALUE))
         );
@@ -95,14 +106,57 @@ public class Athentification extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         AdminDAO admindao = new AdminDAO();
-        Admin admin = new Admin("","");
-        admin = admindao.findAdminByMail(jmail.getText(),jpwd.getText());
-        System.out.println(admin.getMail());
-        System.out.println(admin.getPwd());
+        PrestataireDAO prestatairedao = new PrestataireDAO();
+        ClientDAO clientdao = new ClientDAO();
         
-        AjoutClient ac = new AjoutClient();
+        Admin admin = new Admin("","");
+       
+        Prestataire prestataire = new Prestataire(0, "", "", 0, "", "", "", 0, "", "");
+       
+        Client client = new Client(0, "", "", 0, "", "", "", 0);
+       
+        Globale global = new Globale();
+        
+          admin = admindao.findAdminByMail(jmail.getText(),jpwd.getText());
+         prestataire= prestatairedao.findPrestataireByMailPwd(jmail.getText(),jpwd.getText());
+         client = clientdao.findClientByMailPwd(jmail.getText(),jpwd.getText());
+        
+         if(admin.getId_admin() != 0)
+        {
+      
+        global.setId(admin.getId_admin());
+        global.setMail(admin.getMail());
+        
+        ConsulterReclamation cr = new ConsulterReclamation();
         this.setVisible(false);
-        ac.setVisible(true);
+        cr.setVisible(true);
+        
+        }
+        else if(prestataire.getId_prestataire() !=0 )
+        {
+            global.setId(prestataire.getId_prestataire());
+            global.setNom(prestataire.getNom());
+            global.setPrenom(prestataire.getPrenom());
+            global.setMail(prestataire.getMail());
+            
+            AjouterOffre ao = new AjouterOffre();
+            this.setVisible(false);
+            ao.setVisible(true);
+        }
+        
+        else if(client.getId_client() != 0){
+            global.setId(client.getId_client());
+            global.setNom(client.getNom());
+            global.setPrenom(client.getPrenom());
+            global.setMail(client.getMail());
+            
+            ConsulterCommentaire cc = new ConsulterCommentaire();
+            this.setVisible(false);
+            cc.setVisible(true);
+        }
+        else {
+            faux.setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -140,6 +194,7 @@ public class Athentification extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel faux;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

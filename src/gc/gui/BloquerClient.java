@@ -159,7 +159,7 @@ public class BloquerClient extends javax.swing.JFrame {
         // TODO add your handling code here:
          ClientDAO p = new ClientDAO();
          Client cli=p.findClientById(idp.get(jList2.getSelectedIndex()));
-        cli.setEtat(0);
+        cli.setEtat("debloquer");
         p.updateClient(cli);
          jTextPane1.setText("Nom : "+cli.getNom()+"\n"+
                             "Prenom : "+cli.getPrenom()+"\n"
@@ -175,8 +175,8 @@ public class BloquerClient extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         ClientDAO p = new ClientDAO();
-        Client cli=p.findClientById(idp.get(jList2.getSelectedIndex()));// TODO add your handling code here:
-        cli.setEtat(1);
+        Client cli=p.findClientById(idp.get(jList2.getSelectedIndex()));
+        cli.setEtat("bloquer");
         p.updateClient(cli);
          jTextPane1.setText("Nom : "+cli.getNom()+"\n"+
                             "Prenom : "+cli.getPrenom()+"\n"
@@ -222,20 +222,7 @@ public class BloquerClient extends javax.swing.JFrame {
             }
         });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JList jList2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
-    // End of variables declaration//GEN-END:variables
-
-    private void load() {
+ private void load() {
        ClientDAO pd = new ClientDAO();
        Client p ;
         List<Client> clients;
@@ -255,4 +242,17 @@ public class BloquerClient extends javax.swing.JFrame {
             model.add(i,clients.get(i).getNom());
         }
     }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JList jList2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane jTextPane1;
+    // End of variables declaration//GEN-END:variables
+
+   
 }

@@ -21,9 +21,9 @@ public class Client {
     private String pwd;
     private String adresse;
     private double tel;
-    private int etat ;
+    private String etat ;
 
-    public Client(int id_client, String nom, String prenom, double cin, String mail, String pwd, String adresse, double tel,int etat) {
+    public Client(int id_client, String nom, String prenom, double cin, String mail, String pwd, String adresse, double tel) {
         this.id_client = id_client;
         this.nom = nom;
         this.prenom = prenom;
@@ -32,7 +32,7 @@ public class Client {
         this.pwd = pwd;
         this.adresse = adresse;
         this.tel = tel;
-        this.etat = etat ;
+       
     }
 
     /**
@@ -104,13 +104,15 @@ public class Client {
         this.tel = tel;
     }
 
-       public int getEtat() {
+    public String getEtat() {
         return etat;
     }
 
-    public void setEtat(int etat) {
+    public void setEtat(String etat) {
         this.etat = etat;
     }
+
+     
     @Override
     public String toString() {
         return "Client{" + "id_client=" + id_client + "nom=" + nom + "prenom=" + prenom + "cin=" + cin + "mail=" + mail + "pwd=" + pwd + "adresse=" + adresse + "tel=" + tel + '}';

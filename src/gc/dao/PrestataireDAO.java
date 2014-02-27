@@ -144,6 +144,39 @@ public class PrestataireDAO {
             return null;
         }
     }
+    
+     public Prestataire findPrestataireByMailPwd(String mail,String pwd){
+    Prestataire p = new Prestataire(0, "","",0,"", "","", 0, "","");
+     String requete = "select * from prestataire where mail=?  and pwd =? ";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setString(1, mail);
+             ps.setString(2, pwd);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next())
+            {
+               p.setId_prestataire(resultat.getInt(1));
+               p.setNom(resultat.getString(2));
+              p.setPrenom(resultat.getString(3));
+               p.setCin(resultat.getDouble(4));
+                p.setMail(resultat.getString(5));
+              p.setPwd(resultat.getString(6));
+               p.setAdresse(resultat.getString(7));
+                p.setTel(resultat.getDouble(8));
+                 p.setSpecialite(resultat.getString(9));
+                  p.setEtat(resultat.getString(10));
+                 
+                
+             
+            }
+            return p;
+
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche du prestataire "+ex.getMessage());
+            return null;
+        }
+    }
 
     public List<Prestataire> DisplayAllPrestataire (){
 

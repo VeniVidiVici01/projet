@@ -165,7 +165,7 @@ JLabel l1;
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
        ClientDAO cd = new ClientDAO();
-          Client cl = new Client(0,"","",0,"","","",0,0);
+          Client cl = new Client(0,"","",0,"","","",0);
           Globale gl = new Globale();
          
         cl =cd.findClientAdresse((String)jList1.getSelectedValue());
@@ -215,7 +215,7 @@ JLabel l1;
     {
          ReclamationDAO rd=new ReclamationDAO();
          ClientDAO cd = new ClientDAO();
-          Client cl = new Client(0,"","",0,"","","",0,0);
+          Client cl = new Client(0,"","",0,"","","",0);
         List<Reclamation> reclamation;
         reclamation = new  ArrayList<Reclamation>();
         reclamation=rd.DisplayAllReclamation();

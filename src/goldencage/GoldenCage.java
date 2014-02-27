@@ -21,16 +21,15 @@ public class GoldenCage {
     public static void main(String[] args) {
         ClientDAO clientdao = new ClientDAO();
         Client cli = new Client(0,"", "", 0, "", "", "", 0);
-        cli.setAdresse("sfs");
-        cli.setCin(0);
       
-        cli.setMail("ffff");
-        cli.setNom("sgg");
-        cli.setPrenom("fgf");
-        cli.setPwd("fff");
-        cli.setTel(0);
-       
-        clientdao.insertClient(cli);
+      
+       cli = clientdao.findClientByMailPwd("gh","gh");
+     System.out.println(cli.getMail());
+        //cli= clientdao.findClientById(1);
+        //System.out.println(cli.getNom());
+        //cli = clientdao.findClientAdresse("gh");
+      // System.out.println(cli.getMail());
+        //clientdao.insertClient(cli);
                 
         // TODO code application logic here
     }
