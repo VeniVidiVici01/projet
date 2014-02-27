@@ -27,7 +27,7 @@ public class ClientDAO {
 
      public void insertClient(Client c){
 
-        String requete = "insert into client(id_client,nom,prenom,cin,mail,pwd,adresse,tel,etat) values (default,?,?,?,?,?,?,?)";
+        String requete = "insert into client(id_client,nom,prenom,cin,mail,pwd,adresse,tel,etat) values (default,?,?,?,?,?,?,?,default)";
         try {
             PreparedStatement ps;
             ps = MyConnection.getInstance().prepareStatement(requete);
@@ -50,7 +50,7 @@ public class ClientDAO {
 
 
     public void updateClient(Client c ){
-        String requete = "update client set nom=?,prenom=?,cin=?,mail=?,pwd=?,adresset=?,tel=?,etat=? where id_client=?";
+        String requete = "update client set nom=?,prenom=?,cin=?,mail=?,pwd=?,adresse=?,tel=?,etat=? where id_client=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, c.getNom());
@@ -61,6 +61,7 @@ public class ClientDAO {
             ps.setString(6, c.getAdresse());
             ps.setDouble(7, c.getTel());
             ps.setString(8, c.getEtat());
+            ps.setInt(9, c.getId_client());
             
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
@@ -95,6 +96,17 @@ public class ClientDAO {
             {
                c.setId_client(resultat.getInt(1));
                c.setNom(resultat.getString(2));
+               c.setPrenom(resultat.getString(3));
+               c.setCin(resultat.getDouble(4));
+               c.setMail(resultat.getString(5));
+               c.setPwd(resultat.getString(6));
+               c.setAdresse(resultat.getString(7)); 
+               c.setTel(resultat.getDouble(8));
+              
+               
+               
+               
+               
             }
             return c;
 
