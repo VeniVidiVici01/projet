@@ -118,7 +118,7 @@ public class PrestataireDAO {
 
     public Prestataire findPrestataireByAdresse(String adresse){
     Prestataire p = new Prestataire(0, "","",0,"", "","", 0, "","");
-     String requete = "select * from prestataire where adresse= ?";
+     String requete = "select * from prestataire where nom= ?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, adresse);

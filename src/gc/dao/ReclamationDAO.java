@@ -22,12 +22,14 @@ import java.util.List;
 public class ReclamationDAO {
    public void insertReclamation(Reclamation r){
 
-        String requete = "insert into reclamation (id_reclamation,id_user,message,type) values (default,?,?,?)";
+        String requete = "insert into reclamation (id_reclamation,id_user,message,type,id_prestataire) values (default,?,?,?,?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1, r.getId_user());
+            
             ps.setString(2, r.getMessage());
             ps.setString(3, r.getType());
+            ps.setInt(4, r.getId_prestataire());
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
         } catch (SQLException ex) {
@@ -38,13 +40,14 @@ public class ReclamationDAO {
 
 
     public void updateReclamation(Reclamation r){
-        String requete = "update reclamation set id_user=?,message=?,type=? where id_rec=?";
+        String requete = "update reclamation set id_user=?,message=?,type=?,id_prestataire=? where id_rec=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
            // ps.setString(1, .getAdresse_depot());
-            ps.setInt(1, r.getId_user());
+            ps.setInt(1, r.getId_user()); 
             ps.setString(2, r.getMessage());
             ps.setString(3, r.getType());
+              ps.setInt(4, r.getId_prestataire());
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
@@ -54,7 +57,19 @@ public class ReclamationDAO {
     }
 
     public void deleteReclamation(int id){
-        String requete = "delete from reclamation where id_reclamation=?";
+        String requete = "delete from reclamation where id_user=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            System.out.println("reclamation supprimer");
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la suppression "+ex.getMessage());
+        }
+    }
+    public void deleteReclamationByPrestataire(int id){
+        String requete = "delete from reclamation where id_prestataire=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1, id);
@@ -70,7 +85,7 @@ public class ReclamationDAO {
 
 
     public Reclamation findReclamation(int id){
-        Reclamation reclamation = new Reclamation(0, 0, "", "");
+        Reclamation reclamation = new Reclamation(0, 0, "", "", 0);
      String requete = "select * from reclamation where id_reclamation=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
@@ -82,6 +97,7 @@ public class ReclamationDAO {
                reclamation.setId_user(resultat.getInt(2));
                reclamation.setMessage(resultat.getString(3));
                reclamation.setType(resultat.getString(4));
+                reclamation.setId_prestataire(resultat.getInt(5));
                
             }
             return reclamation;
@@ -94,7 +110,7 @@ public class ReclamationDAO {
     }
 
      public Reclamation findReclamationByUser(int id){
-        Reclamation reclamation = new Reclamation(0, 0, "", "");
+        Reclamation reclamation = new Reclamation(0, 0, "", "",0);
      String requete = "select * from reclamation where id_user=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
@@ -106,6 +122,31 @@ public class ReclamationDAO {
                reclamation.setId_user(resultat.getInt(2));
                reclamation.setMessage(resultat.getString(3));
                reclamation.setType(resultat.getString(4));
+               reclamation.setId_prestataire(resultat.getInt(5));
+               
+            }
+            return reclamation;
+
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche du depot "+ex.getMessage());
+            return null;
+        }
+     }
+        public Reclamation findReclamationByPrestataire(int id){
+        Reclamation reclamation = new Reclamation(0, 0, "", "",0);
+     String requete = "select * from reclamation where id_prestataire=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setInt(1, id);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next())
+            {
+               reclamation.setId_rec(resultat.getInt(1));
+               reclamation.setId_user(resultat.getInt(2));
+               reclamation.setMessage(resultat.getString(3));
+               reclamation.setType(resultat.getString(4));
+               reclamation.setId_prestataire(resultat.getInt(5));
                
             }
             return reclamation;
@@ -118,7 +159,7 @@ public class ReclamationDAO {
     }
 
      public Reclamation findReclamationById(int id){
-        Reclamation reclamation = new Reclamation(0, 0, "", "");
+        Reclamation reclamation = new Reclamation(0, 0, "", "",0);
      String requete = "select * from reclamation where id_reclamation=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
@@ -130,6 +171,7 @@ public class ReclamationDAO {
                reclamation.setId_user(resultat.getInt(2));
                reclamation.setMessage(resultat.getString(3));
                reclamation.setType(resultat.getString(4));
+               reclamation.setId_prestataire(resultat.getInt(5));
                
             }
             return reclamation;
@@ -153,11 +195,12 @@ public class ReclamationDAO {
             ResultSet resultat = statement.executeQuery(requete);
 
             while(resultat.next()){
-              Reclamation reclamation =new  Reclamation(0,0,"", "");
+              Reclamation reclamation =new  Reclamation(0,0,"", "",0);
                 reclamation.setId_rec(resultat.getInt(1));
                 reclamation.setId_user(resultat.getInt(2));
                 reclamation.setMessage(resultat.getString(3));
                 reclamation.setType(resultat.getString(4));
+                 reclamation.setId_prestataire(resultat.getInt(5));
                 
 
                 listereclamation.add(reclamation);
