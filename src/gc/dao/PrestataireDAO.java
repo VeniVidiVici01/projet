@@ -183,7 +183,7 @@ public class PrestataireDAO {
 
         List<Prestataire> listeprestataire = new ArrayList<>();
 
-        String requete = "select * from prestataire";
+        String requete = " select *from prestataire ";
         try {
            Statement statement = MyConnection.getInstance()
                    .createStatement();
