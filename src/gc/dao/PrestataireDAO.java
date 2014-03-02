@@ -212,6 +212,29 @@ public class PrestataireDAO {
             return null;
         }
     }
+     public int DisplayNbrPrestataires() {
+int p=0;
+        String requete = "select count(*)from prestataire";
+        try{
+     
+           Statement statement = MyConnection.getInstance().createStatement();
+                   
+            ResultSet resultat = statement.executeQuery(requete);
+            while(resultat.next())
+            {
+              p= resultat.getInt(1);
+            }
+            return p;
+        }
+        catch (SQLException ex){
+            ex.getMessage();
+            return 0;
+        }
+          
+     }
+                
+            
+           
 
     
 }

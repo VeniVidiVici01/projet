@@ -9,6 +9,7 @@ package gc.gui;
 import gc.dao.MailDAO;
 import gc.entities.Globale;
 import gc.entities.Mail;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -162,6 +163,7 @@ m.setMessage(Message.getText());
 m.setObjet(Object.getText());
 m.setPasswordAdmin(VotreMdp.getText());
 messageDAO.envoieMessage(m, to);
+        JOptionPane.showMessageDialog(this, "message envoyer avec succes");
     }//GEN-LAST:event_sendActionPerformed
 
     /**

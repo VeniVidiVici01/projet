@@ -198,5 +198,22 @@ public class ClientDAO {
         }
     }
     
-    
-}
+         public int DisplayNbrClient() {
+int c=0;
+        String requete = "select count(*)from prestataire";
+        try{
+     
+           Statement statement = MyConnection.getInstance().createStatement();
+                   
+            ResultSet resultat = statement.executeQuery(requete);
+            while(resultat.next())
+            {
+              c= resultat.getInt(1);
+            }
+            return c;
+        }
+        catch (SQLException ex){
+            ex.getMessage();
+            return 0;
+        }
+}}
