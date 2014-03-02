@@ -144,6 +144,7 @@ jScrollPane2.setVisible(true);
               Commentaire commentaire = new Commentaire(0,0, 0,"","");
               commentaire.setType(gl.type);
               commentaire.setId_user(gl.id);
+              commentaire.setId_user(gl.idp);
               commentaire.setCommentaire(comm.getText());
              
               comme.insertCommentaire(commentaire);
@@ -205,20 +206,7 @@ Valider.setVisible(false);
            commentaire.setText(commentaire.getText()+" "+comm.get(i).getNomc()+"\n"+comm.get(i).getComm()+"\n");
             commentaire.setText(commentaire.getText()+" "+comm.get(i).getNomp()+"\n"+comm.get(i).getComm()+"\n");
      
-            /*if(comm.get(i).getType().equals("prestataire"))
-            {
-                pres = prestataire.findPrestataireById(comm.get(i).getId_user());
-               idcom.add(comm.get(i).getId_comm());
-                
-                commentaire.setText(commentaire+"\n"+pres.getNom()+"\n"+comm.get(i).getCommentaire());
-              }
-              if(comm.get(i).getType().equals("client"))
-            {
-                cl = client.findClientById(comm.get(i).getId_user());
-                 idcom.add(comm.get(i).getId_comm());
-                commentaire.setText(commentaire+"\n"+cl.getNom()+"\n"+comm.get(i).getCommentaire());
-              }
-           */
+           
         }
         
         
