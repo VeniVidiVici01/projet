@@ -16,6 +16,7 @@ public static int id;
 public static String nom;
 public static String prenom ;
 public static int idp ;
+public static String type ;
 
     public static int getId() {
         return id;
