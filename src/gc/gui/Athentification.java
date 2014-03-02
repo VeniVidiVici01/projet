@@ -152,7 +152,7 @@ public class Athentification extends javax.swing.JFrame {
             global.setMail(client.getMail());
             global.idp = 0;
             global.type= "client";
-            ConsulterCommentaire cc = new ConsulterCommentaire();
+            ConsulterClient cc = new ConsulterClient();
             this.setVisible(false);
             cc.setVisible(true);
         }
