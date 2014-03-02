@@ -134,7 +134,8 @@ public class Athentification extends javax.swing.JFrame {
         }
         else if(prestataire.getId_prestataire() !=0 )
         {
-            global.setId(prestataire.getId_prestataire());
+            global.idp =prestataire.getId_prestataire();
+            global.id = 0;
             global.setNom(prestataire.getNom());
             global.setPrenom(prestataire.getPrenom());
             global.setMail(prestataire.getMail());
@@ -149,6 +150,7 @@ public class Athentification extends javax.swing.JFrame {
             global.setNom(client.getNom());
             global.setPrenom(client.getPrenom());
             global.setMail(client.getMail());
+            global.idp = 0;
             global.type= "client";
             ConsulterCommentaire cc = new ConsulterCommentaire();
             this.setVisible(false);
