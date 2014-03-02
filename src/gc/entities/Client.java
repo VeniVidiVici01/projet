@@ -8,7 +8,7 @@ package gc.entities;
 
 /**
  *
- * @author mohamed
+ * @author Bagio
  */
 public class Client {
 

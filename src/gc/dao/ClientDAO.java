@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
 *
-* @author BEN ARFA
+* @author Bagio
 */
 public class ClientDAO {
 
@@ -127,9 +127,9 @@ public class ClientDAO {
             while (resultat.next())
             {
                c.setId_client(resultat.getInt(1));
-                System.out.println("testttttttt"+c.getId_client());
-                c.setMail(resultat.getString(2));
-                System.out.println(resultat.getString(2));
+                
+                c.setMail(resultat.getString(5));
+                
             }
             return c;
 

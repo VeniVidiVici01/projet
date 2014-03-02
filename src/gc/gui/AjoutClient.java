@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author STETCHI
+ * @author Bagio
  */
 public class AjoutClient extends javax.swing.JFrame {
 

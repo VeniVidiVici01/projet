@@ -79,7 +79,6 @@
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jAjouter" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
           </Group>
