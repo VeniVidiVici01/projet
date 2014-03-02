@@ -115,7 +115,7 @@ public class AjoutReclamation extends javax.swing.JFrame {
 
     private void jAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAjouterActionPerformed
     ReclamationDAO Reclamation = new ReclamationDAO();
-    Reclamation R =new Reclamation(0,0,"","");
+    Reclamation R =new Reclamation(0,0,"","",0);
     R.setMessage(jMessage.getText());
     Reclamation.insertReclamation(R);        // TODO add your handling code here:
     }//GEN-LAST:event_jAjouterActionPerformed

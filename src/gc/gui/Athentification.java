@@ -138,7 +138,7 @@ public class Athentification extends javax.swing.JFrame {
             global.setNom(prestataire.getNom());
             global.setPrenom(prestataire.getPrenom());
             global.setMail(prestataire.getMail());
-            
+            global.type= "prestataire";
             AjouterOffre ao = new AjouterOffre();
             this.setVisible(false);
             ao.setVisible(true);
@@ -149,7 +149,7 @@ public class Athentification extends javax.swing.JFrame {
             global.setNom(client.getNom());
             global.setPrenom(client.getPrenom());
             global.setMail(client.getMail());
-            
+            global.type= "client";
             ConsulterCommentaire cc = new ConsulterCommentaire();
             this.setVisible(false);
             cc.setVisible(true);

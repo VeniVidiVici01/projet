@@ -12,6 +12,7 @@ import gc.dao.PrestataireDAO;
 import gc.dao.ReclamationDAO;
 import gc.entities.Client;
 import gc.entities.Commentaire;
+import gc.entities.Globale;
 import gc.entities.Prestataire;
 import gc.entities.Reclamation;
 import gc.entities.ResCommentaire;
@@ -139,7 +140,10 @@ jScrollPane2.setVisible(true);
 
     private void ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValiderActionPerformed
         CommentaireDAO comme = new CommentaireDAO();
+        Globale gl = new Globale();
               Commentaire commentaire = new Commentaire(0,0, 0,"","");
+              commentaire.setType(gl.type);
+              commentaire.setId_user(gl.id);
               commentaire.setCommentaire(comm.getText());
              
               comme.insertCommentaire(commentaire);

@@ -7,9 +7,11 @@
 package gc.gui;
 
 import gc.dao.ClientDAO;
+import gc.dao.PrestataireDAO;
 import gc.dao.ReclamationDAO;
 import gc.entities.Client;
 import gc.entities.Globale;
+import gc.entities.Prestataire;
 import gc.entities.Reclamation;
 import java.util.ArrayList;
 import java.util.List;
@@ -134,14 +136,11 @@ JLabel l1;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(repondre))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(supprimer)))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(supprimer)
+                    .addComponent(repondre))
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -150,13 +149,17 @@ JLabel l1;
     private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
         // TODO add your handling code here:
         ReclamationDAO rd=new ReclamationDAO();
-   rd.deleteReclamation((int) jList1.getSelectedValue());
+        Globale gl = new Globale();
+   rd.deleteReclamation(gl.id);
+   rd.deleteReclamationByPrestataire(gl.idp);
+   
+   
         load();
         message.setText("");
     }//GEN-LAST:event_supprimerActionPerformed
 
     private void repondreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repondreActionPerformed
-        AjoutReclamation rec = new AjoutReclamation();
+        mail rec = new mail();
         this.setVisible(false);
         rec.setVisible(true);
 
@@ -167,13 +170,29 @@ JLabel l1;
        ClientDAO cd = new ClientDAO();
           Client cl = new Client(0,"","",0,"","","",0);
           Globale gl = new Globale();
-         
+         PrestataireDAO pd= new PrestataireDAO();
+             Prestataire  pr = new Prestataire(0, "", "", 0, "", "", "", 0, "", "");
         cl =cd.findClientAdresse((String)jList1.getSelectedValue());
+        pr = pd.findPrestataireByAdresse((String)jList1.getSelectedValue());
+        if(cl.getId_client() !=0)
+        {
          gl.setMail(cl.getMail());
         ReclamationDAO rd=new ReclamationDAO();
-        Reclamation rc= new Reclamation(0,0, "","");
+        Reclamation rc= new Reclamation(0,0, "","",0);
         rc = rd.findReclamationByUser(cl.getId_client());
+        gl.id= cl.getId_client();
         message.setText(rc.getMessage());
+        }
+        else if(pr.getId_prestataire()!=0)
+        { 
+        gl.setMail(pr.getMail());
+        ReclamationDAO rd=new ReclamationDAO();
+        Reclamation rc= new Reclamation(0,0, "","",0);
+        rc = rd.findReclamationByPrestataire(pr.getId_prestataire());
+        gl.idp= pr.getId_prestataire();
+        message.setText(rc.getMessage());
+        }
+        
     }//GEN-LAST:event_jList1MouseClicked
 
     /**
@@ -215,7 +234,10 @@ JLabel l1;
     {
          ReclamationDAO rd=new ReclamationDAO();
          ClientDAO cd = new ClientDAO();
+          PrestataireDAO pd= new PrestataireDAO();
           Client cl = new Client(0,"","",0,"","","",0);
+          Prestataire  pr = new Prestataire(0, "", "", 0, "", "", "", 0, "", "");
+         
         List<Reclamation> reclamation;
         reclamation = new  ArrayList<Reclamation>();
         reclamation=rd.DisplayAllReclamation();
@@ -224,11 +246,13 @@ JLabel l1;
         model = new DefaultListModel();
         jList1.setModel(model);
         model.clear();
-        model.addElement(cl.getNom());
+        
         for(int i=0;i<reclamation.size();i++)
         {
           cl=  cd.findClientById(reclamation.get(i).getId_user());
+          pr=pd.findPrestataireById(reclamation.get(i).getId_prestataire());
 model.add(i, cl.getNom());
+model.add(i, pr.getNom());
         }
                 
     }
