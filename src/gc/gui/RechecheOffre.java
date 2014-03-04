@@ -15,7 +15,7 @@ import java.util.List;
  * @author NESSIM
  */
 public class RechecheOffre extends javax.swing.JFrame {    
-private ListSalleFetesModel modele=new ListSalleFetesModel();
+private final ListSalleFetesModel modele=new ListSalleFetesModel();
 private ListSalleFetesModel recherche;
 public RechecheOffre() {
         initComponents();
@@ -64,6 +64,8 @@ public RechecheOffre() {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        Combotype.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
         TextLieux.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,18 +179,19 @@ public RechecheOffre() {
     }//GEN-LAST:event_TextLieuxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-String nom=TxtNom.getText();
+
+     String nom=TxtNom.getText();
 Double prix=0.0;
+
+String lieu=TextLieux.getText();
 if( !"".equals(TxtPrix.getText()))
 {
-    prix=Double.parseDouble(TxtPrix.getText());
+   prix=Double.parseDouble(TxtPrix.getText());
 } 
-String lieu=TextLieux.getText();
 String type=Combotype.getSelectedItem().toString();
        
       recherche=new ListSalleFetesModel(nom,prix,lieu,type);
         Tab_salle_fetes.setModel(recherche);
-        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
