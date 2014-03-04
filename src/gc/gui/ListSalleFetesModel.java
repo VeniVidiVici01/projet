@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  * @author NESSIM
  */
 public class ListSalleFetesModel extends AbstractTableModel{
-     String[] headers={"Nom","Date","Lieux","Prix"};
+     String[] headers={"Nom","Lieux","Prix","Description"};
      List<Offre> ListeOffre=new ArrayList<>();
     public ListSalleFetesModel()
     {
@@ -41,11 +41,11 @@ public class ListSalleFetesModel extends AbstractTableModel{
             case 0:
                 return  ListeOffre.get(rowIndex).getNom();
             case 1:
-                return ListeOffre.get(rowIndex).getDate();
-            case 2:
                 return ListeOffre.get(rowIndex).getLieu();
-            case 3:
+            case 2:
                 return ListeOffre.get(rowIndex).getPrix();
+            case 3:
+                return ListeOffre.get(rowIndex).getDescription();
             default:
                 return null;
         }
