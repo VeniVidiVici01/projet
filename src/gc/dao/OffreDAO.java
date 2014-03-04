@@ -134,6 +134,27 @@ public class OffreDAO {
             return null;
         }
     }
+    public List<Offre> DisplayType(){
+         List<Offre> listeoffre = new ArrayList<>();
+         String requete = "SELECT type from offre";
+        try {
+           Statement statement = MyConnection.getInstance().createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+
+            while(resultat.next()){
+                Offre o  = new Offre();
+               
+                o.setType(resultat.getString(1));
+                listeoffre.add(o);
+            }
+            return listeoffre;
+        } 
+         catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des offres  "+ex.getMessage());
+            return null;
+        }
+    }
 
     public List<Offre> DisplayAllOffre (){
 
@@ -168,8 +189,9 @@ public class OffreDAO {
     }
     public List<Offre> RechercheOffre(String nom,Double prix,String lieu,String type)
     {
+         System.out.println(nom+prix+lieu+type);
         List<Offre> listeoffre = new ArrayList<>();
-        String requete = "SELECT nom,lieu,prix,description from offre where nom like ?'%' or lieu like ?'%' or prix like ?'%' or type=?";
+        String requete = "SELECT nom,lieu,prix,description from offre where nom= ? or lieu= ? or prix= ? or type= ?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, nom);
@@ -191,6 +213,7 @@ public class OffreDAO {
                    //  o.setId_prestataire(resultat.getInt(7));
 
                 listeoffre.add(o);
+                System.out.println(listeoffre);
             }
             
         
