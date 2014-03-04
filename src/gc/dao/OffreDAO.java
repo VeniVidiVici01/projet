@@ -189,7 +189,6 @@ public class OffreDAO {
     }
     public List<Offre> RechercheOffre(String nom,Double prix,String lieu,String type)
     {
-         System.out.println(nom+prix+lieu+type);
         List<Offre> listeoffre = new ArrayList<>();
         String requete = "SELECT nom,lieu,prix,description from offre where nom= ? or lieu= ? or prix= ? or type= ?";
         try {
@@ -213,7 +212,7 @@ public class OffreDAO {
                    //  o.setId_prestataire(resultat.getInt(7));
 
                 listeoffre.add(o);
-                System.out.println(listeoffre);
+               
             }
             
         
