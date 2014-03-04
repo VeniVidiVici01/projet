@@ -140,8 +140,7 @@ public class OffreDAO {
 
         List<Offre> listeoffre = new ArrayList<>();
 
-        String requete = "SELECT  `nom` ,  `lieu` ,  `prix` ,  `date` \n" +
-"FROM  `offre` ";
+        String requete = "SELECT nom,lieu,prix,description from offre";
         try {
            Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);
@@ -152,7 +151,7 @@ public class OffreDAO {
                 o.setNom(resultat.getString(1));
                 o.setLieu(resultat.getString(2));
                 o.setPrix(resultat.getDouble(3));
-                 o.setDate(resultat.getString(4));
+                 o.setDescription(resultat.getString(4));
                  
                   // o.setType(resultat.getString(5));
                  //   o.setDescription(resultat.getString(6));
