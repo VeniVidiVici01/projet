@@ -189,10 +189,15 @@ if( !"".equals(TxtPrix.getText()))
    prix=Double.parseDouble(TxtPrix.getText());
 } 
 String type=Combotype.getSelectedItem().toString();
-       
-      recherche=new ListSalleFetesModel(nom,prix,lieu,type);
+       if("".equals(nom) && "".equals(lieu) && "".equals(type) && prix==0.0)
+       {
+           Tab_salle_fetes.setModel(modele);
+           Tab_salle_fetes.revalidate();
+       }
+       else{  recherche=new ListSalleFetesModel(nom,prix,lieu,type);
         Tab_salle_fetes.setModel(recherche);
-        
+        Tab_salle_fetes.revalidate();
+       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
