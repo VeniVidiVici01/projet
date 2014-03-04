@@ -24,6 +24,12 @@ public class ListSalleFetesModel extends AbstractTableModel{
        ListeOffre=offredao.DisplayAllOffre();
         
     }
+    public ListSalleFetesModel(String nom,Double prix,String lieu,String type)
+    {
+       OffreDAO offredao=new OffreDAO();
+       ListeOffre=offredao.RechercheOffre(nom, prix, lieu, type);
+        
+    }
 
     @Override
     public int getRowCount() {
