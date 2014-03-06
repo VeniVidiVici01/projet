@@ -9,6 +9,8 @@ package gc.gui;
 import gc.dao.OffreDAO;
 import gc.entities.Offre;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -193,6 +195,7 @@ String type=Combotype.getSelectedItem().toString();
        {
            Tab_salle_fetes.setModel(modele);
            Tab_salle_fetes.revalidate();
+           JOptionPane.showMessageDialog(this, "Aucun champs saisie !");
        }
        else{  recherche=new ListSalleFetesModel(nom,prix,lieu,type);
         Tab_salle_fetes.setModel(recherche);
