@@ -136,7 +136,7 @@ public class OffreDAO {
     }
     public List<Offre> DisplayType(){
          List<Offre> listeoffre = new ArrayList<>();
-         String requete = "SELECT type from offre";
+         String requete = "SELECT DISTINCT type from offre";
         try {
            Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);
@@ -190,11 +190,11 @@ public class OffreDAO {
     public List<Offre> RechercheOffre(String nom,Double prix,String lieu,String type)
     {
         List<Offre> listeoffre = new ArrayList<>();
-        String requete = "SELECT nom,lieu,prix,description from offre where nom= ? or lieu= ? or prix= ? or type= ?";
+        String requete = "SELECT nom,lieu,prix,description from offre where nom like ? or lieu like ? or prix= ? or type= ?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setString(1, nom);
-            ps.setString(2, lieu);
+            ps.setString(1, nom+"%");
+            ps.setString(2, lieu+"%");
             ps.setDouble(3, prix);
             ps.setString(4, type);
             ResultSet resultat = ps.executeQuery();
