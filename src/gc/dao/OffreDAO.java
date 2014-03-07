@@ -193,8 +193,8 @@ public class OffreDAO {
         String requete = "SELECT nom,lieu,prix,description from offre where nom like ? or lieu like ? or prix= ? or type= ?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setString(1, nom+"%");
-            ps.setString(2, lieu+"%");
+            ps.setString(1, nom);
+            ps.setString(2, lieu);
             ps.setDouble(3, prix);
             ps.setString(4, type);
             ResultSet resultat = ps.executeQuery();
